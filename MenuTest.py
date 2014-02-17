@@ -10,6 +10,10 @@ import time
 WHITE = (255,255,255) #set the color WHITE to a variable
 BLACK = (0,0,0) #set the color BLACK to a variable
 
+#NOTE
+#Currently, selected options are white, and deselected options are black
+
+
 class button():
 	def __init__(self): #all buttons start not selected
 		self.bcolor = WHITE
@@ -31,22 +35,22 @@ class button():
 		else:
 			self.bcolor = BLACK
 
-	def Choice(self, pressed):
-		if pressed:
-			pass
-		else:
-			pass
+	def setChoice(self, pressed):
+			self.select = pressed
 
-	def setName(name):
+	def getChoice(self):
+		return self.select
+
+	def setName(self, name):
 		self.name = name
 
-	def getName():
+	def getName(self):
 		return self.name
 
-	def setLoc(loc):
+	def setLoc(self, loc):
 		self.loc = loc
 
-	def getloc():
+	def getLoc(self):
 		return self.loc
 
 x = 0
@@ -57,8 +61,17 @@ pygame.init()
 startb = button()
 exitb = button()
 
+startb.setName("startb")
+exitb.setName("exitb")
+
 buttons = {1:startb, 2:exitb}
 selected = 1
+
+
+startb.setChoice(True)
+exitb.setChoice(False)
+
+#buttons[selected].setChoice(True):
 
 display = pygame.display.set_mode((640, 480)) #set size of window
 display.fill((WHITE))
@@ -73,11 +86,11 @@ while True:
 	print "exit", exitb.getSelect()
 	startdisp = fontObj.render("Start", True, startb.getSelect())
 	exitdisp = fontObj.render("Exit", True, exitb.getSelect())
-	display.blit(startdisp, (135, 320))
-	display.blit(exitdisp, (235, 250))
 	
 	while loc:
 		print "loop2"
+		display.blit(startdisp, (135, 320))
+		display.blit(exitdisp, exitb.getLoc())
 		startdisp = fontObj.render("Start", True, startb.getSelect())
 		exitdisp = fontObj.render("Exit", True, exitb.getSelect())
 		for event in pygame.event.get():
@@ -92,29 +105,33 @@ while True:
 
 				if event.key == K_z: #enter option
 					print "z"
+					for item in buttons:
+						if buttons[item].getChoice():
+							print buttons[item].getName() + " has been selected."
 				
-					if type(buttons[selected]).__name__ == "exitb":
-						print "Closing!"
-						pygame.quit()
-						sys.exit()
-
-					if buttons[selected].Choice(True):
-						print "z"
-						if str(buttons[selected]) == "exitb":
-							print "Closing!"
-							pygame.quit()
-							sys.exit()
-
-						elif str(buttons[selected]) == "startb":
-							print "Starting!"
+#					if buttons[selected] == :
+#						print "Closing!"
+#						pygame.quit()
+#						sys.exit()
+#					if buttons[selected].getChoice():
+#						print "z"
+#						if str(buttons[selected]) == "exitb":
+#							print "Closing!"
+#							pygame.quit()
+#							sys.exit()
+#						elif str(buttons[selected]) == "startb":
+#							print "Starting!"
 
 				elif event.key == K_DOWN: #move down through menu
+					buttons[selected].setChoice(False)
 					if selected == 2:
 						selected -= 1
 					else:
 						selected += 1
+					buttons[selected].setChoice(True)
 				
 				elif event.key == K_UP: #move up through menu
+					buttons[selected].setChoice(False)
 					if selected == 1:
 						selected += 1
 					
@@ -123,20 +140,26 @@ while True:
 
 					else:
 						selected -= 1
+					buttons[selected].setChoice(True)
 				
 				else:
 					continue
 
+		
 		for item in buttons:
-			print "foo" + str(item) + str(buttons[item])
-			if item == selected:
-				buttons[selected].setSelect(True)
-			else:
-				buttons[selected].setSelect(False)
+			print buttons[item], buttons[item].getChoice()
+			buttons[item].setSelect(buttons[item].getChoice())
+#			print "foo" + str(item) + str(buttons[item])
+#			if item == selected:
+#			else:
+#				buttons[selected].setSelect(False)
 
-		time.sleep(1)
-		print "start", startb.getSelect()
-		print "exit", exitb.getSelect()
+		time.sleep(0.5)
+
+#		print "start", startb.getSelect()
+#		print "exit", exitb.getSelect()
+		print ">start", startb.getChoice()
+		print ">exit", startb.getChoice()
 
 		pygame.display.update()
 
