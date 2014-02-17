@@ -42,7 +42,7 @@ y = 0
 loc = True
 pygame.init()
 
-startb = button((500, 125), True, "startb")
+startb = button((500, 180), True, "startb")
 optionb = button((500, 250), False, "optionb")
 exitb = button((500, 320), False, "exitb")
 
@@ -85,10 +85,16 @@ while True:
 					for item in buttons:
 						if buttons[item].getChoice():
 							print buttons[item].getName() + " has been selected."
-							if buttons[item].getName() == "exit":
+							if buttons[item].getName() == "exitb":
 								print "closing"
 								pygame.quit()
 								sys.exit()
+
+							elif buttons[item].getName() == "optionb":
+								print "options"
+
+							elif buttons[item].getName() == "startb":
+								print "starting game!"
 
 				elif event.key == K_DOWN: #move down through menu
 					buttons[selected].setChoice(False)
@@ -113,9 +119,6 @@ while True:
 		for item in buttons:
 			print buttons[item].getName(), buttons[item].getChoice()
 			buttons[item].setSelect(buttons[item].getChoice())
-
-		print ">start", startb.getChoice()
-		print ">exit", startb.getChoice()
 
 		pygame.display.update()
 
