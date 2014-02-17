@@ -31,9 +31,9 @@ class button():
 		
 	def setSelect(self, select):
 		if select:
-			self.bcolor = WHITE
-		else:
 			self.bcolor = BLACK
+		else:
+			self.bcolor = WHITE
 
 	def setChoice(self, pressed):
 			self.select = pressed
@@ -60,16 +60,22 @@ pygame.init()
 
 startb = button()
 exitb = button()
+optionb = button()
 
 startb.setName("startb")
 exitb.setName("exitb")
+optionb.setName("optionb")
 
-buttons = {1:startb, 2:exitb}
+buttons = {1:startb, 2:exitb, 3:optionb}
 selected = 1
 
 
 startb.setChoice(True)
 exitb.setChoice(False)
+optionb.setChoice(False)
+
+startb.setLoc((135, 320))
+optionb.setLoc((320, 250))
 
 #buttons[selected].setChoice(True):
 
@@ -86,13 +92,16 @@ while True:
 	print "exit", exitb.getSelect()
 	startdisp = fontObj.render("Start", True, startb.getSelect())
 	exitdisp = fontObj.render("Exit", True, exitb.getSelect())
+	optiondisp = fontObj.render("Options", True, optionb.getSelect())
 	
 	while loc:
 		print "loop2"
 		display.blit(startdisp, (135, 320))
 		display.blit(exitdisp, exitb.getLoc())
+		display.blit(optiondisp, optionb.getLoc())
 		startdisp = fontObj.render("Start", True, startb.getSelect())
 		exitdisp = fontObj.render("Exit", True, exitb.getSelect())
+		optiondisp = fontObj.render("Options", True, optionb.getSelect())
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				print "closing"
@@ -108,6 +117,10 @@ while True:
 					for item in buttons:
 						if buttons[item].getChoice():
 							print buttons[item].getName() + " has been selected."
+							if buttons[item].getName() == "exit":
+								print "closing"
+								pygame.quit()
+								sys.exit()
 				
 #					if buttons[selected] == :
 #						print "Closing!"
@@ -124,37 +137,42 @@ while True:
 
 				elif event.key == K_DOWN: #move down through menu
 					buttons[selected].setChoice(False)
-					if selected == 2:
+					if selected == 1:
+						selected += 2
+					elif selected == 2:
 						selected -= 1
 					else:
-						selected += 1
+						selected -= 1
 					buttons[selected].setChoice(True)
 				
 				elif event.key == K_UP: #move up through menu
 					buttons[selected].setChoice(False)
+#					if selected == 1:
+#						selected += 1
+					
+#					elif selected <= 0:
+#						selected = 1
+
+#					else:
+#						selected -= 1
 					if selected == 1:
 						selected += 1
-					
-					elif selected <= 0:
-						selected = 1
-
+					elif selected == 2:
+						selected += 1
 					else:
-						selected -= 1
-					buttons[selected].setChoice(True)
-				
-				else:
-					continue
+						selected -= 2
 
+					buttons[selected].setChoice(True)
 		
 		for item in buttons:
-			print buttons[item], buttons[item].getChoice()
+			print buttons[item].getName(), buttons[item].getChoice()
 			buttons[item].setSelect(buttons[item].getChoice())
 #			print "foo" + str(item) + str(buttons[item])
 #			if item == selected:
 #			else:
 #				buttons[selected].setSelect(False)
 
-		time.sleep(0.5)
+#		time.sleep(0.5)
 
 #		print "start", startb.getSelect()
 #		print "exit", exitb.getSelect()
