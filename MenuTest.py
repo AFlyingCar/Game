@@ -37,9 +37,7 @@ class button():
 	def getLoc(self):
 		return self.loc
 
-x = 0
-y = 0
-loc = True
+menu1 = True
 pygame.init()
 
 startb = button((500, 180), True, "startb")
@@ -50,22 +48,19 @@ buttons = {1:startb, 2:exitb, 3:optionb}
 selected = 1
 
 display = pygame.display.set_mode((640, 480)) #set size of window
-display.fill((WHITE))
-pygame.display.set_caption("Game Menu")
-fontObj = pygame.font.Font('freesansbold.ttf', 29)
+display.fill((WHITE)) #This color is temporary. It will be replaced with an image later.
+pygame.display.set_caption("Game Menu") #set window caption
+fontObj = pygame.font.Font('freesansbold.ttf', 29) #make font object
 
-print str(buttons)
 while True:
-	print "loop1"
 	buttons[selected].setSelect(True)
-	print "start", startb.getSelect()
-	print "exit", exitb.getSelect()
 
-	while loc:
+	while menu1:
 		print "loop2"
 		startdisp = fontObj.render("Start", True, startb.getSelect())
 		exitdisp = fontObj.render("Exit", True, exitb.getSelect())
 		optiondisp = fontObj.render("Options", True, optionb.getSelect())
+
 		display.blit(startdisp, startb.getLoc())
 		display.blit(exitdisp, exitb.getLoc())
 		display.blit(optiondisp, optionb.getLoc())
