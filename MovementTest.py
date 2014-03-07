@@ -15,8 +15,12 @@ BLACK = (0,0,0) #set the color BLACK to a variable
 class char():
 	def __init__(self, name):
 		self.pos = [0,0]
+		self.focus = False
+		self.move = True
+		self.hitbox = pygame.image.load("Images\\hitbox.png")
+		self.default = pygame.image.load("Images\\default.png")
 		self.sprite = pygame.image.load("Images\\" + name + ".png")
-		pygame.transform.scale(self.sprite, (50,50))
+		#pygame.transform.scale(self.sprite, (50,50))
 
 	def getSprite(self):
 		return self.sprite
@@ -27,7 +31,24 @@ class char():
 	def getPos(self):
 		return self.pos
 
-char1 = char("char2")
+	def setFocus(self, TF):
+		self.focus = TF
+
+	def getFocus(self):
+		if self.focus:
+			return self.hitbox
+		else:
+			return self.default
+
+	def getMove(self):
+		return self.move
+
+	def setMove(self, TF):
+		self.move = TF
+
+x = raw_input("Character (1,2): ")
+
+uchar = char("char" + x)
 game = True
 
 pygame.init()
@@ -40,7 +61,8 @@ while True:
 	while game:
 		print "loop"
 		display.fill((BLACK))
-		display.blit(char1.getSprite(), char1.getPos())
+		display.blit(uchar.getSprite(), uchar.getPos())
+#		display.blit(uchar.getFocus(), uchar.getPos())
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -53,24 +75,35 @@ while True:
 					sys.exit()
 
 				elif event.key == K_UP:
-					pos = char1.getPos()
+					pos = uchar.getPos()
 					pos[1] -= 5
-					char1.setPos(pos)
+					uchar.setPos(pos)
 
 				elif event.key == K_DOWN:
-					pos = char1.getPos()
+					pos = uchar.getPos()
 					pos[1] += 5
-					char1.setPos(pos)
+					uchar.setPos(pos)
 
 				elif event.key == K_LEFT:
-					pos = char1.getPos()
+					#while uchar.getMove():
+					#	if event.key != K_LEFT:
+					#		uchar.setMove(False)
+					#	else:
+					pos = uchar.getPos()
 					pos[0] -= 5
-					char1.setPos(pos)
+					uchar.setPos(pos)
+					uchar.setMove(True)
 
 				elif event.key == K_RIGHT:
-					pos = char1.getPos()
+					pos = uchar.getPos()
 					pos[0] += 5
-					char1.setPos(pos)
+					uchar.setPos(pos)
+
+				elif event.key == K_RSHIFT or event.key == L_SHIFT:
+					if event.key == K_RSHIFT or event.key == L_SHIFT:
+						char1.setFocus(True)
+					else:
+						char1.setFocus(False)
 
 		pygame.display.update()
 
