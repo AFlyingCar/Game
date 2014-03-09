@@ -8,10 +8,11 @@ from pygame.locals import *
 
 WHITE = (255,255,255) #set the color WHITE to a variable
 BLACK = (0,0,0) #set the color BLACK to a variable
+GRAY = (171,162,162) #set the color GRAY to a variable
 
 class button():
 	def __init__(self, loc, select, name): #all buttons start not selected
-		self.bcolor = WHITE
+		self.bcolor = GRAY
 		self.select = select
 		self.name = name
 		self.loc = loc
@@ -23,7 +24,7 @@ class button():
 		if select:
 			self.bcolor = BLACK
 		else:
-			self.bcolor = WHITE
+			self.bcolor = GRAY
 
 	def setChoice(self, pressed):
 			self.select = pressed
