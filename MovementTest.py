@@ -17,6 +17,7 @@ class char():
 		self.pos = [0,0]
 		self.focus = False
 		self.move = True
+		self.shoot = False
 		self.hitbox = pygame.image.load("Images//hitbox.png")
 		self.default = pygame.image.load("Images\\default.png")
 		self.sprite = pygame.image.load("Images\\" + name + ".png")
@@ -45,6 +46,9 @@ class char():
 
 	def setMove(self, TF):
 		self.move = TF
+
+	def setShoot(self, TF):
+		self.shoot = TF
 
 x = raw_input("Character (1,2): ")
 
@@ -94,11 +98,14 @@ while True:
 					print "FOCUS!"
 					uchar.setFocus(True)
 
+				if event.key == K_z:
+					uchar.setShoot(True)
 
 			if event.type == KEYUP:
 				velY = 0
 				velX = 0
 				uchar.setFocus(False)
+				uchar.setShoot(False)
 
 		######Update player position######
 		pos[1] += velY
