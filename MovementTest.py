@@ -50,6 +50,7 @@ x = raw_input("Character (1,2): ")
 
 uchar = char("char" + x)
 game = True
+velocity = (0,0)
 
 pygame.init()
 
@@ -63,6 +64,7 @@ while True:
 		display.fill((BLACK))
 		display.blit(uchar.getSprite(), uchar.getPos())
 #		display.blit(uchar.getFocus(), uchar.getPos())
+		pos = uchar.getPos()
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -75,37 +77,34 @@ while True:
 					pygame.quit()
 					sys.exit()
 
-				elif event.key == K_UP:
-					while pygame.key.get_focused():
-						pos = uchar.getPos()
-						pos[1] -= 5
-						uchar.setPos(pos)
-						direction = (0,5)
-						print "foo"
+				if event.key == K_UP:
+					velocity += (0,-5)
 
-				elif event.key == K_DOWN:
-					pos = uchar.getPos()
-					pos[1] += 5
-					uchar.setPos(pos)
-					direction = (0,-5)
+				if event.key == K_DOWN:
+					velocity += (0,5)
 
-				elif event.key == K_LEFT:
-					pos = uchar.getPos()
-					pos[0] -= 5
-					uchar.setPos(pos)
-					direction = (-5,0)
+				if event.key == K_LEFT:
+					velocity += (-5,0)
 
-				elif event.key == K_RIGHT:
-					pos = uchar.getPos()
-					pos[0] += 5
-					uchar.setPos(pos)
-					direction = (5,0)
+				if event.key == K_RIGHT:
+					velocity += (5,0)
 
 				elif event.key == K_RSHIFT or event.key == K_LSHIFT:
 					if event.key == K_RSHIFT or event.key == K_LSHIFT:
 						char1.setFocus(True)
 					else:
 						char1.setFocus(False)
+
+
+			elif event.type == KEYUP:
+				print "RESET!"
+				velocity = (0,0)
+
+			######Update player position######
+			pos[1] += velocity[1]
+			pos[0] += velocity[0]
+			uchar.setPos(pos)
+			print uchar.getPos()
 
 		pygame.display.update()
 
