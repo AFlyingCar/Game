@@ -69,38 +69,40 @@ while True:
 				pygame.quit()
 				sys.exit()
 
-			elif event.type == KEYDOWN:
+			######Define key events######
+			if event.type == KEYDOWN:
 				if event.key == K_ESCAPE:
 					pygame.quit()
 					sys.exit()
 
 				elif event.key == K_UP:
-					pos = uchar.getPos()
-					pos[1] -= 5
-					uchar.setPos(pos)
+					while pygame.key.get_focused():
+						pos = uchar.getPos()
+						pos[1] -= 5
+						uchar.setPos(pos)
+						direction = (0,5)
+						print "foo"
 
 				elif event.key == K_DOWN:
 					pos = uchar.getPos()
 					pos[1] += 5
 					uchar.setPos(pos)
+					direction = (0,-5)
 
 				elif event.key == K_LEFT:
-					#while uchar.getMove():
-					#	if event.key != K_LEFT:
-					#		uchar.setMove(False)
-					#	else:
 					pos = uchar.getPos()
 					pos[0] -= 5
 					uchar.setPos(pos)
-					uchar.setMove(True)
+					direction = (-5,0)
 
 				elif event.key == K_RIGHT:
 					pos = uchar.getPos()
 					pos[0] += 5
 					uchar.setPos(pos)
+					direction = (5,0)
 
-				elif event.key == K_RSHIFT or event.key == L_SHIFT:
-					if event.key == K_RSHIFT or event.key == L_SHIFT:
+				elif event.key == K_RSHIFT or event.key == K_LSHIFT:
+					if event.key == K_RSHIFT or event.key == K_LSHIFT:
 						char1.setFocus(True)
 					else:
 						char1.setFocus(False)
