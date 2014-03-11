@@ -1,9 +1,9 @@
-###########
-#Tyler Robbins
-#3/7/14
-#Movement Test
-#A script of the testing of character movement (user input)#
-###########
+#############################################################
+#Tyler Robbins											    #
+#3/7/14											   		    #
+#Movement Test											    #
+#A script of the testing of character movement (user input).#
+#############################################################
 
 import pygame
 from pygame.locals import *
@@ -17,7 +17,7 @@ class char():
 		self.pos = [0,0]
 		self.focus = False
 		self.move = True
-		self.hitbox = pygame.image.load("Images\\hitbox.png")
+		self.hitbox = pygame.image.load("Images//hitbox.png")
 		self.default = pygame.image.load("Images\\default.png")
 		self.sprite = pygame.image.load("Images\\" + name + ".png")
 		#pygame.transform.scale(self.sprite, (50,50))
@@ -25,7 +25,7 @@ class char():
 	def getSprite(self):
 		return self.sprite
 
-	def setPos(self, pos = [0,0]):
+	def setPos(self, pos):
 		self.pos = pos
 
 	def getPos(self):
@@ -50,7 +50,9 @@ x = raw_input("Character (1,2): ")
 
 uchar = char("char" + x)
 game = True
-velocity = (0,0)
+velY = 0
+velX = 0
+pos = [0,0]
 
 pygame.init()
 
@@ -60,11 +62,9 @@ fontObj = pygame.font.Font('freesansbold.ttf', 29) #make font object
 
 while True:
 	while game:
-		print "loop"
 		display.fill((BLACK))
 		display.blit(uchar.getSprite(), uchar.getPos())
-#		display.blit(uchar.getFocus(), uchar.getPos())
-		pos = uchar.getPos()
+		display.blit(uchar.getFocus(), uchar.getPos())
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -73,39 +73,40 @@ while True:
 
 			######Define key events######
 			if event.type == KEYDOWN:
+
 				if event.key == K_ESCAPE:
 					pygame.quit()
 					sys.exit()
 
 				if event.key == K_UP:
-					velocity += (0,-5)
+					velY = -5
 
 				if event.key == K_DOWN:
-					velocity += (0,5)
+					velY = 5
 
 				if event.key == K_LEFT:
-					velocity += (-5,0)
+					velX = -5
 
 				if event.key == K_RIGHT:
-					velocity += (5,0)
+					velX = 5
 
-				elif event.key == K_RSHIFT or event.key == K_LSHIFT:
-					if event.key == K_RSHIFT or event.key == K_LSHIFT:
-						char1.setFocus(True)
-					else:
-						char1.setFocus(False)
+				if event.key == K_LSHIFT:
+					print "FOCUS!"
+					uchar.setFocus(True)
 
 
-			elif event.type == KEYUP:
-				print "RESET!"
-				velocity = (0,0)
+			if event.type == KEYUP:
+				velY = 0
+				velX = 0
+				uchar.setFocus(False)
 
-			######Update player position######
-			pos[1] += velocity[1]
-			pos[0] += velocity[0]
-			uchar.setPos(pos)
-			print uchar.getPos()
-
+		######Update player position######
+		pos[1] += velY
+		pos[0] += velX
+		uchar.setPos(pos)
+		print uchar.getPos()
+		
+		######Update Display######
 		pygame.display.update()
 
 nuclear = u'\u2622'
