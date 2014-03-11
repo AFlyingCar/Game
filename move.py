@@ -10,7 +10,7 @@ fontObj = pygame.font.Font('freesansbold.ttf', 29) #make font object
 velX = 0
 velY = 0
 pos = [0,0]
-img = pygame.image.load("char1.png")
+img = pygame.image.load("Images\\char1.png")
 
 while True:
     display.fill((0,0,0))
@@ -23,16 +23,16 @@ while True:
 
         if event.type == KEYDOWN:
             if event.key == K_DOWN:
-                velY += 10
+                velY = 5
 
             if event.key == K_UP:
-                velY -= 10
+                velY = -5
 
             if event.key == K_LEFT:
-                velX -= 10
+                velX = -5
 
             if event.key == K_RIGHT:
-                velX += 10
+                velX = 5
 
             if event.key == K_ESCAPE:
                 pygame.quit()
@@ -47,7 +47,3 @@ while True:
     print pos
     
     pygame.display.update()
-
-
-
-#continuously reset the keypress
