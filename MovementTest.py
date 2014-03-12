@@ -18,6 +18,7 @@ class char():
 		self.focus = False
 		self.move = True
 		self.shoot = False
+		self.speed = 5
 		self.hitbox = pygame.image.load("Images//hitbox.png")
 		self.default = pygame.image.load("Images\\default.png")
 		self.sprite = pygame.image.load("Images\\" + name + ".png")
@@ -37,9 +38,11 @@ class char():
 
 	def getFocus(self):
 		if self.focus:
-			return self.hitbox
+			self.speed = 1
+			return [self.hitbox, self.speed]
 		else:
-			return self.default
+			self.speed = 5
+			return [self.default, self.speed]
 
 	def getMove(self):
 		return self.move
@@ -68,7 +71,7 @@ while True:
 	while game:
 		display.fill((BLACK))
 		display.blit(uchar.getSprite(), uchar.getPos())
-		display.blit(uchar.getFocus(), uchar.getPos())
+		display.blit(uchar.getFocus()[0], (uchar.getPos()[0] + 86, uchar.getPos()[1] + 185))
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -83,16 +86,16 @@ while True:
 					sys.exit()
 
 				if event.key == K_UP:
-					velY = -5
+					velY = -uchar.getFocus()[1]
 
 				if event.key == K_DOWN:
-					velY = 5
+					velY = uchar.getFocus()[1]
 
 				if event.key == K_LEFT:
-					velX = -5
+					velX = -uchar.getFocus()[1]
 
 				if event.key == K_RIGHT:
-					velX = 5
+					velX = uchar.getFocus()[1]
 
 				if event.key == K_LSHIFT:
 					print "FOCUS!"
