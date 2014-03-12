@@ -65,7 +65,7 @@ Download "Game/" by typing:
 Programmers
 ===========
 
-Note: Please put your name on top of files that you are editing, and please only edit those. This is to avoid merging issues.
+Note: Please put your name on top of files that you are editing as a comment or say *-[Name].py, and please only edit the files with your name on it. This is to avoid merging issues.
 
 -Sound files belong in:
   Sounds/
