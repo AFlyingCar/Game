@@ -19,7 +19,7 @@ class char():
 		self.move = True
 		self.shoot = False
 		self.speed = 5
-		self.hitbox = pygame.image.load("Images//hitbox.png")
+		self.hitbox = pygame.image.load("Images\\hitbox.png")
 		self.default = pygame.image.load("Images\\default.png")
 		self.sprite = pygame.image.load("Images\\" + name + ".png")
 		#pygame.transform.scale(self.sprite, (50,50))
@@ -53,6 +53,9 @@ class char():
 	def setShoot(self, TF):
 		self.shoot = TF
 
+	def flip(self):
+		self.sprite = pygame.transform.flip(self.sprite, True, False)
+
 x = raw_input("Character (1,2): ")
 
 uchar = char("char" + x)
@@ -60,6 +63,8 @@ game = True
 velY = 0
 velX = 0
 pos = [0,0]
+left = True
+right = False
 
 pygame.init()
 
@@ -93,9 +98,17 @@ while True:
 
 				if event.key == K_LEFT:
 					velX = -uchar.getFocus()[1]
+					if left:
+						left = False
+						right = True
+						uchar.flip()
 
 				if event.key == K_RIGHT:
 					velX = uchar.getFocus()[1]
+					if right:
+						right = False
+						left = True
+						uchar.flip()
 
 				if event.key == K_LSHIFT:
 					print "FOCUS!"
