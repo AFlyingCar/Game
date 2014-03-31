@@ -52,6 +52,43 @@ class Collidable(pygame.sprite.Sprite):
 	def draw(self, surf):
 		surf.blit(self.image, (self.rect[0] + self.xoffset, self.rect[0] + self.yoffset))
 
+class Player(Collidable):
+	def __init__(self, pos, char=1, spell):
+		Collidable.__init__(self.groups)
+		self.image = "\\Images\\char%d.png" % char
+		self.focus = False
+		self.shoot = False
+		self.speed = 5
+		self.hitbox = "Images\\hitbox.png"
+		self.default = "Images\\default.png"
+		self.pos = [640/2 - self.image.get_size()[0]/2,480/2 - self.image.get_size()[1]/2]
+
+	def getSprite(self):
+		return self.image
+
+	def setPos(self, pos):
+		self.pos = pos
+
+	def getPos(self):
+		return self.pos
+
+	def setFocus(self, TF):
+		self.focus = TF
+
+	def getFocus(self):
+		if self.focus:
+			self.speed = 1
+			return [self.hitbox, self.speed]
+		else:
+			self.speed = 5
+			return [self.default, self.speed]
+
+	def setShoot(self, TF=False):
+		self.shoot = TF
+
+	def flip(self):
+		self.image = pygame.transform.flip(self.image, True, False)
+
 ######Normal Enemies######
 class FairySmallBlue(Collidable):
 	def __init__(self, pos):
@@ -83,6 +120,8 @@ class KappaBlue(Collidable):
 	def __init__(self, pos):
 		Collidable.__init__(self.groups)
 		self.image = "\\Images\\enemy-kappa-b.png"
+
+######BOSSES######
 
 ######Stage 1 Bosses######
 class Alraune(Collidable):
@@ -158,5 +197,10 @@ class Tom(Collidable):
 		Collidable.__init__(self.groups)
 		self.image = "\\Images\\boss-Tom.png"
 		self.music = "\\Sounds\\Tom.ogg"
+
+class bullet1(Collidable):
+	def __init__(self, *groups):
+		Collidable.__init__(self.groups)
+		self.image = "\\Images\\bullet1.png"
 
 nuclear = u'\u2622'
