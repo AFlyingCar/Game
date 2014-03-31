@@ -76,7 +76,7 @@ while True:
 		display.fill((BLACK))
 		display.blit(uchar.getSprite(), uchar.getPos())
 		#display.blit(uchar.getFocus()[0], (uchar.getPos()[0] + 86, uchar.getPos()[1] + 185))
-		display.blit(uchar.getFocus()[0], (uchar.getPos()[0] + uchar.getSprite().get_size()[0]/2, uchar.getPos()[1] + uchar.getSprite().get_size()[1]/2))
+		display.blit(uchar.getFocus()[0], (uchar.getPos()[0] + uchar.getSprite().get_width()/2, uchar.getPos()[1] + uchar.getSprite().get_height()/2))
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -85,7 +85,6 @@ while True:
 
 			######Define key events######
 			if event.type == KEYDOWN:
-
 				if event.key == K_ESCAPE:
 					pygame.quit()
 					sys.exit()
@@ -118,10 +117,18 @@ while True:
 					uchar.setShoot(True)
 
 			if event.type == KEYUP:
-				velY = 0
-				velX = 0
-				uchar.setFocus(False)
-				uchar.setShoot(False)
+				if event.key == 273:
+					velY = 0
+				if event.key == 274:
+					velY = 0
+				if event.key == 275:
+					velX = 0
+				if event.key == 276:
+					velX = 0
+				if event.key == 304:
+					uchar.setFocus(False)
+				if event.key == 122:
+					uchar.setShoot(False)
 
 		######Update player position######
 		pos[1] += velY
