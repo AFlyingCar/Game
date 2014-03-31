@@ -14,18 +14,17 @@ BLACK = (0,0,0) #set the color BLACK to a variable
 
 class char():
 	def __init__(self, name):
-		self.pos = [0,0]
 		self.focus = False
 		self.move = True
 		self.shoot = False
 		self.speed = 5
 		self.hitbox = pygame.image.load("Images\\hitbox.png")
 		self.default = pygame.image.load("Images\\default.png")
-		self.sprite = pygame.image.load("Images\\" + name + ".png")
-		#pygame.transform.scale(self.sprite, (50,50))
+		self.image = pygame.image.load("Images\\" + name + ".png")
+		self.pos = [640/2 - self.image.get_size()[0]/2,480/2 - self.image.get_size()[1]/2]
 
 	def getSprite(self):
-		return self.sprite
+		return self.image
 
 	def setPos(self, pos):
 		self.pos = pos
@@ -54,7 +53,7 @@ class char():
 		self.shoot = TF
 
 	def flip(self):
-		self.sprite = pygame.transform.flip(self.sprite, True, False)
+		self.image = pygame.transform.flip(self.image, True, False)
 
 x = raw_input("Character (1,2): ")
 
@@ -62,7 +61,7 @@ uchar = char("char" + x)
 game = True
 velY = 0
 velX = 0
-pos = [0,0]
+pos = [640/2 - uchar.getSprite().get_size()[0]/2,480/2 - uchar.getSprite().get_size()[1]/2]
 left = True
 right = False
 
@@ -76,7 +75,8 @@ while True:
 	while game:
 		display.fill((BLACK))
 		display.blit(uchar.getSprite(), uchar.getPos())
-		display.blit(uchar.getFocus()[0], (uchar.getPos()[0] + 86, uchar.getPos()[1] + 185))
+		#display.blit(uchar.getFocus()[0], (uchar.getPos()[0] + 86, uchar.getPos()[1] + 185))
+		display.blit(uchar.getFocus()[0], (uchar.getPos()[0] + uchar.getSprite().get_size()[0]/2, uchar.getPos()[1] + uchar.getSprite().get_size()[1]/2))
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -127,7 +127,6 @@ while True:
 		pos[1] += velY
 		pos[0] += velX
 		uchar.setPos(pos)
-		print uchar.getPos()
 		
 		######Update Display######
 		pygame.display.update()
