@@ -12,9 +12,8 @@ https://github.com/AFlyingCar/AlphabetGame/archive/master.zip
 
 To install Python and Pygame on MacOSX and Windows, follow these links below and choose the version of your operating system.
  
-[Python](http://www.python.org/download/releases/2.7/)
- 
-[Pygame](http://www.pygame.org/download.shtml)
+- [Python](http://www.python.org/download/releases/2.7/)
+- [Pygame](http://www.pygame.org/download.shtml)
  
 - Note: Python 2.7 comes preinstalled on Linux operating systems. However, should this change in the future, simply follow the above instructions.
   
