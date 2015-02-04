@@ -24,11 +24,13 @@ $ sudo apt-get install python-pygame
 
 # Fork This Repository
 To fork this repository follow these step
+
 Linux (Ubuntu):
 ```bash
 $ git clone https://github.com/AFlyingCar/Game.git
 ```
 Windows:
+
 https://github.com/AFlyingCar/Game/archive/master.zip
     
 # Programmers
