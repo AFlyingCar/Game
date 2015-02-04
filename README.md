@@ -5,7 +5,7 @@ A Touhou fan-game made with Python 2.7 utilizing the Pygame 1.9.1 modules.
 - Fully functional game with menus, music, images, levels, bosses, and bullet physics
 - Note: This game is still in very early indev, as it has almost none of the features that a Touhou game should have.
 
-# Installation
+# Requirement
 https://github.com/AFlyingCar/AlphabetGame/archive/master.zip
 
 **For Mac OS X and Windows**
