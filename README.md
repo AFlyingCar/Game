@@ -9,6 +9,7 @@ A Touhou fan-game made with Python 2.7 utilizing the Pygame 1.9.1 modules.
   https://github.com/AFlyingCar/AlphabetGame/archive/master.zip
 
 **For Mac OS X and Windows**
+
   For Python and Pygame on MacOSX and Windows, follow these links and choose the version that suits your operating system.
  
   http://www.python.org/download/releases/2.7/
