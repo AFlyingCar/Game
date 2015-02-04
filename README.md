@@ -22,14 +22,15 @@ To install Python and Pygame on MacOSX and Windows, follow these links below and
 $ sudo apt-get install python-pygame
 ```
 
-**Git clone**
-Download "Game/" by typing:
-  -Unix:
-    - $ git clone https://github.com/AFlyingCar/Game.git
-  -Windows:
-    https://github.com/AFlyingCar/Game/archive/master.zip
-  
-  
+# Fork This Repository
+To fork this repository follow these step
+- Linux (Ubuntu):
+```bash
+$ git clone https://github.com/AFlyingCar/Game.git
+```
+- Windows:
+https://github.com/AFlyingCar/Game/archive/master.zip
+    
 # Programmers
 > Note: Please put your name on top of files that you are editing as a comment or call the file "[FileName]-[Your Name].*", and please only edit the files with your name on it. This is to avoid merging issues.
 
