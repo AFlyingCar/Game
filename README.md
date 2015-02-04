@@ -30,9 +30,8 @@ Download "Game/" by typing:
     https://github.com/AFlyingCar/Game/archive/master.zip
   
   
-Programmers
-===========
-Note: Please put your name on top of files that you are editing as a comment or call the file "[FileName]-[Your Name].*", and please only edit the files with your name on it. This is to avoid merging issues.
+# Programmers
+> Note: Please put your name on top of files that you are editing as a comment or call the file "[FileName]-[Your Name].*", and please only edit the files with your name on it. This is to avoid merging issues.
 
 -Sound files belong in the Sounds/ folder
   - Must be *.ogg files for the program to read.
