@@ -15,7 +15,7 @@ To install Python and Pygame on MacOSX and Windows, follow these links below and
 - [Python](http://www.python.org/download/releases/2.7/)
 - [Pygame](http://www.pygame.org/download.shtml)
  
-> Note: Python 2.7 comes preinstalled on Linux operating systems. However, should this change in the future, simply follow the above instructions.
+> Note: Python 2.7 comes preinstalled on Linux operating system. However, should this change in the future, simply follow the above instructions.
   
 **For Linux (Ubuntu)**
 ```bash
@@ -24,11 +24,11 @@ $ sudo apt-get install python-pygame
 
 # Fork This Repository
 To fork this repository follow these step
-- Linux (Ubuntu):
+Linux (Ubuntu):
 ```bash
 $ git clone https://github.com/AFlyingCar/Game.git
 ```
-- Windows:
+Windows:
 https://github.com/AFlyingCar/Game/archive/master.zip
     
 # Programmers
